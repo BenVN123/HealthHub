@@ -2,8 +2,6 @@
 
 Our hackaton project is a deep learning detection algorithm that can identify potential and existing brain tumors in patients. The project's Flask frontend it is found in this Github repository. Along with the AI detection, we have also included a BMI calculator and a Q/A section using Python and CSS/HTML. 
 
-Datasets, Deep Learning Code, and Model Weights: https://drive.google.com/drive/folders/1iJLlyFM3grgPhNYWgqqjpYMcS09SNta3?usp=sharing
-
 *The model weights file should be inside /HackSite/deeplearning/*
 
 ## Usage
