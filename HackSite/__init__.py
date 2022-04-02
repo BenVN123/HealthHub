@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, ses
 import os
 import secrets
 from PIL import Image
-from HackSite.deeplearning.classification import predict
+from HealthHub.deeplearning.classification import predict
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
