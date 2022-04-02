@@ -1,4 +1,4 @@
-from HackSite import create_app
+from HealthHub import create_app
 
 app = create_app()
 
