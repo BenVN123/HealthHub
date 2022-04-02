@@ -1,6 +1,6 @@
-# Intentifying Brain Tumors in Patients
+# Virtual Hospital 
 
-Our hackathon project is a deep learning detection algorithm that can tell the difference between a military plane and a civilian plane. The project's Flask frontend it is found in this Github repository.
+Our hackaton project is a deep learning detection algorithm that can identify potential and existing brain tumors in patients. The project's Flask frontend it is found in this Github repository. Along with the AI detection, we have also included a BMI calculator and a Q/A section using Python and CSS/HTML. 
 
 Datasets, Deep Learning Code, and Model Weights: https://drive.google.com/drive/folders/1iJLlyFM3grgPhNYWgqqjpYMcS09SNta3?usp=sharing
 
