@@ -8,7 +8,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='uPqECIPsjfu7qQ93MwHiyDr73QyhyjUphSnehNAt',
-        DATABASE=os.path.join(app.instance_path, 'HackSite.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'HealthHub.sqlite'),
     )
 
     if test_config is None:
