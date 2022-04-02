@@ -19,5 +19,5 @@ python run.py
 ```
 
 
-Created by [@BenVN123](https://github.com/BenVN123), [@epicesh](https://github.com/epicesh), and [@laalyn](https://github.com/laalyn)
+Created by [@BenVN123](https://github.com/BenVN123), [@RishitAgrawal06](https://github.com/RishitAgrawal06, and [@laalyn](https://github.com/laalyn)
 
