@@ -24,7 +24,7 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
-    from HackSite.db import get_db
+    from HealthHub.db import get_db
 
     @app.before_request
     def load_logged_in_user():
