@@ -19,5 +19,5 @@ python run.py
 ```
 
 
-Created by [@BenVN123](https://github.com/BenVN123), [@RishitAgrawal06](https://github.com/RishitAgrawal06), [@epicesh](https://github.com/epicesh), and [@boogey]
+Created by [Ben Nguyen](https://github.com/BenVN123), [Rishit Agrawal](https://github.com/RishitAgrawal06), [Eshaan Kaipa](https://github.com/epicesh), and [Adarsh Agrahara](https://github.com/boogeyman-is-back-at-crabfest)
 
