@@ -1,4 +1,4 @@
-# Classifying between Military and Civilian Aircraft with Deep Learning
+# Intentifying Brain Tumors in Patients
 
 Our hackathon project is a deep learning detection algorithm that can tell the difference between a military plane and a civilian plane. The project's Flask frontend it is found in this Github repository.
 
