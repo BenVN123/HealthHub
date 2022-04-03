@@ -83,6 +83,10 @@ def create_app(test_config=None):
 
         return render_template("questions.html", questions=questions)
 
+    @app.route("/symptoms")
+    def symptoms():
+        return render_template("symptoms.html")
+
     @app.route("/about")
     def about():
         return render_template("about.html")
