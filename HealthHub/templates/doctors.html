@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}Doctors{% endblock %}
+
+{% block content %}
+<article class="media content-section">
+    <form method='post'>
+        <input type='text' placeholder='Zip Code' size='110%' name='zipcode'>
+        <input type='submit' value='Search'>
+    </form>
+</article>
+{% endblock content %}
