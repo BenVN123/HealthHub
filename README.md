@@ -9,7 +9,7 @@ Install all dependencies needed for this program:
 pip install -r requirements.txt
 ```
 
-Set the Flask variables accordingly:
+Set the Flask variable accordingly:
 ```
 export FLASK_ENV=run
 ```
