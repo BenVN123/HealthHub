@@ -14,7 +14,7 @@ Set the Flask variable accordingly:
 export FLASK_ENV=run
 ```
 
-Do the following to start the Flask application on [127.0.0.1:5000](127.0.0.1:5000):
+Do the following to start the Flask application on [localhost](http://127.0.0.1:5000):
 ```
 flask run
 ```
