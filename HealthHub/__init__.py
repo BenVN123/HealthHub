@@ -82,35 +82,14 @@ def create_app(test_config=None):
             flash(error)
 
         return render_template("questions.html", questions=questions)
+    
+    @app.route("/symptoms")
+    def symptoms():
+        return render_template("symptoms.html")
 
     @app.route("/about")
     def about():
         return render_template("about.html")
-
-    @app.route("/auth", methods=("GET", "POST"))
-    def auth():
-        if g.user:
-            return redirect(url_for("index"))
-        if request.method == "POST":
-            p = request.form["password"]
-            error = None
-
-            if p != "password:)":
-                error = "Invalid password."
-
-            if error is None:
-                session["user_id"] = "1"
-
-                return redirect(url_for("index"))
-
-            flash(error)
-
-        return render_template("auth.html")
-
-    @app.route("/logout")
-    def logout():
-        session.clear()
-        return redirect(url_for("index"))
 
     @app.route("/<int:id>", methods=("GET", "POST"))
     def answer(id):
