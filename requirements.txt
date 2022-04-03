@@ -1,6 +1,4 @@
 flask
 keras
-tensorflow
 pillow
-pandas
 opencv-python
