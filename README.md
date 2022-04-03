@@ -34,7 +34,7 @@ pip install -r requirements.txt
 
 Set the Flask variable accordingly:
 ```
-export FLASK_ENV=run
+export FLASK_APP=run
 ```
 
 Do the following to start the Flask application on [localhost](http://127.0.0.1:5000):
