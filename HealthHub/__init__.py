@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session, g
+from flask import Flask, render_template, request, flash, redirect, url_for, session, g 
 import os
 import secrets
 from PIL import Image
@@ -28,14 +28,28 @@ def create_app(test_config=None):
 
     from HealthHub.db import get_db
 
+
     @app.before_request
     def load_logged_in_user():
-        auth = session.get("user_id")
+        user_id = session.get('user_id')
 
-        if auth is None:
+        if user_id is None:
             g.user = None
         else:
-            g.user = {"id": 1, "name": "auth"}
+            g.user = get_db().execute(
+                'SELECT * FROM user WHERE id = ?', (user_id,)   
+            ).fetchone()
+
+
+    def login_required(view):
+        @functools.wraps(view)
+        def wrapped_view(**kwargs):
+            if g.user is None:
+                return redirect(url_for('login'))
+
+            return view(**kwargs)
+
+        return wrapped_view
 
     def save_picture(picture):
         fname = secrets.token_hex(20)
@@ -48,6 +62,7 @@ def create_app(test_config=None):
 
         return picture_path
 
+    @login_required
     @app.route("/", methods=("GET", "POST"))
     def index():
         if request.method == "POST":
@@ -62,6 +77,7 @@ def create_app(test_config=None):
             return render_template("index.html", output=lol)
         return render_template("index.html")
 
+    @login_required
     @app.route("/questions", methods=("GET", "POST"))
     def questions():
         db = get_db()
@@ -83,10 +99,12 @@ def create_app(test_config=None):
 
         return render_template("questions.html", questions=questions)
 
+    @login_required
     @app.route("/symptoms")
     def symptoms():
         return render_template("symptoms.html")
 
+    @login_required
     @app.route("/doctors", methods=("GET", "POST"))
     def doctors():
         if request.method == "POST":
@@ -102,35 +120,12 @@ def create_app(test_config=None):
 
         return render_template("doctors.html")
 
+    @login_required
     @app.route("/about")
     def about():
         return render_template("about.html")
 
-    @app.route("/auth", methods=("GET", "POST"))
-    def auth():
-        if g.user:
-            return redirect(url_for("index"))
-        if request.method == "POST":
-            p = request.form["password"]
-            error = None
-
-            if p != "password:)":
-                error = "Invalid password."
-
-            if error is None:
-                session["user_id"] = "1"
-
-                return redirect(url_for("index"))
-
-            flash(error)
-
-        return render_template("auth.html")
-
-    @app.route("/logout")
-    def logout():
-        session.clear()
-        return redirect(url_for("index"))
-
+    @login_required
     @app.route("/<int:id>", methods=("GET", "POST"))
     def answer(id):
         db = get_db()
@@ -155,4 +150,71 @@ def create_app(test_config=None):
 
         return render_template("answer.html", id=id, answers=answers)
 
+
+    
+    @app.route('/register', methods=('GET', 'POST'))
+    def register():
+        if request.method == 'POST':
+            username = request.form['username']
+            password = request.form['password']
+            db = get_db()
+            error = None
+
+            if not username:
+                error = 'Username is required.'
+            elif not password:
+                error = 'Password is required.'
+
+            if error is None:
+                try:
+                    db.execute(
+                        "INSERT INTO user (username, password) VALUES (?, ?)",
+                        (username, generate_password_hash(password)),
+                    )
+                    db.commit()
+                except db.IntegrityError:
+                    error = f"User {username} is already registered."
+                else:
+                    return redirect(url_for("login"))
+
+            flash(error)
+
+        return render_template('register.html')
+
+    @app.route('/login', methods=('GET', 'POST'))
+    def login():
+        if request.method == 'POST':
+            username = request.form['username']
+            password = request.form['password']
+            db = get_db()
+            error = None
+            user = db.execute(
+                'SELECT * FROM user WHERE username = ?', (username,)
+            ).fetchone()
+
+            if user is None:
+                error = 'Incorrect username.'
+            elif not check_password_hash(user['password'], password):
+                error = 'Incorrect password.'
+
+            if error is None:
+                session.clear()
+                session['user_id'] = user['id']
+                return redirect(url_for('index'))
+
+            flash(error)
+
+        return render_template('login.html')
+
+
+    
+
+    @login_required
+    @app.route('/logout')
+    def logout():
+        session.clear()
+        return redirect(url_for('index'))
+
+        
+        
     return app
