@@ -9,7 +9,7 @@
         <input type='submit' value='Ask'>
     </form>
 </article>
-    {% for q in questions %}
+    {% for q in questions[::-1] %}
         <article class="media content-section">
           <div class="media-body">
               <small class="text-muted">{{ q.date_created.strftime('%Y-%m-%d') }}</small>
