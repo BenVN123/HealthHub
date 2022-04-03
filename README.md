@@ -20,5 +20,4 @@ flask run
 ```
 
 
-Created by [Adarsh Agrahara](https://github.com/boogeyman-is-back-at-crabfest), [Ben Nguyen](https://github.com/BenVN123), [Eshaan Kaipa](https://github.com/epicesh) , and [Rishit Agrawal](https://github.com/RishitAgrawal06)
-
+Created by [Ben Nguyen](https://github.com/BenVN123), [Rishit Agrawal](https://github.com/RishitAgrawal06), [Adarsh Agrahara](https://github.com/boogeyman-is-back-at-crabfest), and [Eshaan Kaipa](https://github.com/epicesh)
