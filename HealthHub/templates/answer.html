@@ -5,12 +5,12 @@
 {% block content %}
 <article class="media content-section">
     <form method='post'>
-        <input type='text' size='140%' name='body'>
+        <input type='text' size='110%' name='body'>
         <input type='submit' value='Answer'>
     </form>
 </article>
 
-{% for a in answers %}
+{% for a in answers[::-1] %}
         <article class="media content-section">
           <div class="media-body">
             <p class="article-content" style="word-break: break-word;">{{ a.body }}</p>
