@@ -3,6 +3,7 @@ import os
 import secrets
 from PIL import Image
 from HealthHub.deeplearning.classification import predict
+import functools
 
 
 def create_app(test_config=None):
