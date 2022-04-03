@@ -28,15 +28,6 @@ def create_app(test_config=None):
 
     from HealthHub.db import get_db
 
-    @app.before_request
-    def load_logged_in_user():
-        auth = session.get("user_id")
-
-        if auth is None:
-            g.user = None
-        else:
-            g.user = {"id": 1, "name": "auth"}
-
     def save_picture(picture):
         fname = secrets.token_hex(20)
         _, f_ext = os.path.splitext(picture.filename)
@@ -105,31 +96,6 @@ def create_app(test_config=None):
     @app.route("/about")
     def about():
         return render_template("about.html")
-
-    @app.route("/auth", methods=("GET", "POST"))
-    def auth():
-        if g.user:
-            return redirect(url_for("index"))
-        if request.method == "POST":
-            p = request.form["password"]
-            error = None
-
-            if p != "password:)":
-                error = "Invalid password."
-
-            if error is None:
-                session["user_id"] = "1"
-
-                return redirect(url_for("index"))
-
-            flash(error)
-
-        return render_template("auth.html")
-
-    @app.route("/logout")
-    def logout():
-        session.clear()
-        return redirect(url_for("index"))
 
     @app.route("/<int:id>", methods=("GET", "POST"))
     def answer(id):
