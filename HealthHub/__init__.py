@@ -87,6 +87,21 @@ def create_app(test_config=None):
     def symptoms():
         return render_template("symptoms.html")
 
+    @app.route("/doctors", methods=("GET", "POST"))
+    def doctors():
+        if request.method == "POST":
+            zipcode = request.form["zipcode"]
+
+            if len(zipcode) < 5:
+                error = "Please enter a valid American zip code."
+                flash(error)
+            else:
+                return redirect(
+                    f"https://www.vitals.com/search?query=Brain%20Tumor&city_state={zipcode}"
+                )
+
+        return render_template("doctors.html")
+
     @app.route("/about")
     def about():
         return render_template("about.html")
