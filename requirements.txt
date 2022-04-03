@@ -2,3 +2,4 @@ flask
 keras
 pillow
 opencv-python
+gunicorn
